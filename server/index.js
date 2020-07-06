@@ -6,6 +6,7 @@ const PORT = 8080;
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
+app.use('/api/users/', require('./routes/users'));
 
 
 app.use((err, req, res, next)=>{
