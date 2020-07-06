@@ -11,6 +11,9 @@ app.use(express.json());
 
 app.use(compression());
 
+// add routes here
+app.use("/api", require("./db/api/users"));
+
 app.use((err, req, res, next) => {
   res.send("Oops. Well, that's embarrassing");
 });
