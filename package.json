@@ -4,6 +4,7 @@
   "description": "<h1>Extended - Server</h1> The server for the Extended extension Purpose: <ul>   <li>API creation</li>   <li>Database</li> </ul>",
   "main": "server/db/index.js",
   "dependencies": {
+    "compression": "^1.7.4",
     "express": "^4.17.1",
     "morgan": "^1.10.0",
     "pg": "^8.2.1",
