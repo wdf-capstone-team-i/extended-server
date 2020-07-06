@@ -9,9 +9,12 @@
     "pg-hstore": "^2.3.3",
     "sequelize": "^6.3.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "faker": "^4.1.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "seed": "node scripts/seed.js"
   },
   "repository": {
     "type": "git",
