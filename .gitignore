@@ -4,3 +4,4 @@ node_modules
 *.log
 bundle.js
 bundle.map.js
+package-lock.json
