@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const {User} = require('../index');
 
 // Get all users
 router.get("/", async (req, res, next) => {
@@ -7,7 +8,7 @@ router.get("/", async (req, res, next) => {
 
     res.json(users);
   } catch (error) {
-    next(error);
+    console.log(error);
   }
 });
 
@@ -18,7 +19,9 @@ router.get("/:userId", async (req, res, next) => {
     const user = await User.findByPk(userId);
     if (user) {
       res.status(200).json(user);
-    } else sendStatus(404);
+    } else {
+      res.sendStatus(404);
+    }
   } catch (error) {
     next(error);
   }
@@ -39,7 +42,9 @@ router.post("/", async (req, res, next) => {
 
     if (newUser) {
       res.status(200).json(newUser);
-    } else sendStatus(404);
+    } else {
+      res.sendStatus(404);
+    }
   } catch (error) {
     next(error);
   }
@@ -59,3 +64,5 @@ router.delete("/:userId", async (req, res, next) => {
     next(error);
   }
 });
+
+module.exports = router;
