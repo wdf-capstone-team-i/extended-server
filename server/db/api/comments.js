@@ -11,6 +11,7 @@ router.get("/domain/:id", async (req, res, next) => {
         })
         pages = pages.map(page => page.dataValues.id)
         const comments = await Comment.findAll({
+            attributes: ['text', 'createdAt', 'updatedAt'],
             where: {
                 pageId: pages
             },
@@ -28,6 +29,7 @@ router.get("/domain/:id", async (req, res, next) => {
 router.get("/page/:id", async (req, res, next) => {
     try {
         const comments = await Comment.findAll({
+            attributes: ['text', 'createdAt', 'updatedAt'],
             where: {
                 pageId: req.params.id
             },
