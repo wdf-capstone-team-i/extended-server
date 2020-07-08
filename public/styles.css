@@ -1,25 +1,25 @@
-*{
-    margin: 0;
-    padding: 0;
+* {
+  margin: 0;
+  padding: 0;
 }
-#chat{
-    width: 45%;
+#chat {
+  width: 45%;
 }
-#chat-messages{
-    background-color: darkgrey;
-    overflow-y: scroll;
-    height: 300px;
-}
-
-#chat form{
-    background-color: aqua;
-    padding: 10px 5px;
+#chat-messages {
+  background-color: darkgrey;
+  overflow-y: scroll;
+  height: 300px;
 }
 
-.chat-msg{
-    background-color: #2a2a2a;
-    color: white;
-    border-radius: 4px;
-    padding: 10px;
-    margin: 5px;
+#chat form {
+  background-color: aqua;
+  padding: 10px 5px;
+}
+
+.chat-msg {
+  background-color: #2a2a2a;
+  color: white;
+  border-radius: 4px;
+  padding: 10px;
+  margin: 5px;
 }
