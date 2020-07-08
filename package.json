@@ -16,7 +16,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "seed": "node scripts/seed.js"
+    "seed": "node scripts/seed.js",
+    "start": "nodemon server"
   },
   "repository": {
     "type": "git",
