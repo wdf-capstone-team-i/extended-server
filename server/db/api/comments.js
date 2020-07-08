@@ -69,7 +69,6 @@ router.post("/", async (req, res, next) => {
             name,
             domain
         })
-        console.log(site)
         let page = await Page.findOne({
             where: {
                 url
@@ -123,7 +122,6 @@ router.delete('/', async (req, res, next) => {
                 userId: req.session.userId
             }
         })
-        console.log(deleted)
         if (!deleted) res.json('no comments to delete')
         else res.json(`successfully deleted ${deleted} comment${deleted > 1 ? 's' : ''}`)
     } catch (error) {
