@@ -13,9 +13,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(compression());
 
-// add routes here
-app.use("/api/users", require("./db/api/users"));
-app.use(express.static(path.join(__dirname, "..", "public")));
+
+app.use("/api", require("./db/api"));
+app.use(express.static(path.join(__dirname, '..', 'public')));
 
 app.use((err, req, res, next) => {
   res.send("Oops. Well, that's embarrassing");
