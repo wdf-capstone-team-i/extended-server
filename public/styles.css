@@ -2,24 +2,28 @@
   margin: 0;
   padding: 0;
 }
-#chat {
-  width: 45%;
-}
-#chat-messages {
-  background-color: darkgrey;
-  overflow-y: scroll;
-  height: 300px;
+
+footer {
+  background-color: #fbc02d !important;
 }
 
-#chat form {
-  background-color: aqua;
-  padding: 10px 5px;
+input,
+select,
+textarea {
+  color: #ffffff;
 }
 
-.chat-msg {
-  background-color: #2a2a2a;
-  color: white;
-  border-radius: 4px;
-  padding: 10px;
-  margin: 5px;
+textarea:focus,
+input:focus {
+  color: #ffffff;
+}
+
+#links,
+#links > * {
+  color: #282c34 !important;
+}
+
+#register-button {
+  background-color: #fbc02d;
+  color: #282c34;
 }

@@ -15,11 +15,123 @@
     />
 
     <!--Let browser know website is optimized for mobile-->
+    <link type="text/css" rel="stylesheet" href="./styles.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
 
-  <body>
-    <!--JavaScript at end of body for optimized loading-->
+  <body style="background-color: #282c34;">
+    <div>
+      <div class="navbar-fixed">
+        <nav>
+          <div class="nav-wrapper" style="background-color: #ffeb3b;">
+            <a href="#!" class="brand-logo" style="color: #282c34;">Extended</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"
+              ><i class="material-icons" style="color: #282c34;">menu</i></a
+            >
+            <ul class="hide-on-med-and-down">
+              <li><a href="./pages">Github</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <ul class="sidenav" id="mobile-demo">
+        <li><a href="github.html">Github</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="container pt-60">
+      <div class="row">
+        <form class="col s12" action="#" id="register" onsubmit="">
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="firstName" type="text" class="validate" required />
+              <label for="firstName">First Name</label>
+            </div>
+            <div class="input-field col s6">
+              <input id="lastName" type="text" class="validate" required />
+              <label for="lastName">Last Name</label>
+            </div>
+          </div>
+          <div class="row mb-0">
+            <div class="input-field col s12">
+              <textarea
+                id="username"
+                class="materialize-textarea"
+                required
+              ></textarea>
+              <label for="username">Username</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="email" type="email" class="validate" required />
+              <label for="email">Email</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="pass" type="password" class="validate" required />
+              <label for="pass">Password</label>
+            </div>
+            <div class="input-field col s6">
+              <input id="c_pass" type="password" class="validate" required />
+              <label for="c_pass">Confirm Password</label>
+            </div>
+          </div>
+
+          <label>
+            <input type="checkbox" />
+            <span>Remember Me</span>
+          </label>
+          <div class="row">
+            <div class="col s12 mt-25">
+              <button
+                id="register-button"
+                class="btn waves-effect waves-light pulse"
+                type="submit"
+                value="Submit"
+              >
+                Register Now
+                <i class="material-icons right">send</i>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <footer class="page-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text" style="color: #282c34 !important;">
+              Footer Content
+            </h5>
+            <p
+              class="grey-text text-lighten-4"
+              style="color: #282c34 !important;"
+            >
+              You can use rows and columns here to organize your footer content.
+            </p>
+          </div>
+          <div class="col l4 offset-l2 s12" id="links">
+            <h5 class="white-text" style="color: #282c34 !important;">
+              Stuff we can add
+            </h5>
+            <ul></ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright" style="color: #282c34;">
+        <div class="container">
+          © Made with Materialize
+        </div>
+      </div>
+    </footer>
+
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="module" src="index.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
   </body>
 </html>
