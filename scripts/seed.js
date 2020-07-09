@@ -7,7 +7,7 @@ async function seed(generate){
     try {
         await db.sync({force: true});
         const newUsers = [];
-        for(let i = 0; i < generate; i++){
+        for(let i = 0; i < generate * 100; i++){
             const newUser = await User.create({
                 firstname: faker.name.firstName(),
                 lastname: faker.name.lastName(),
@@ -26,7 +26,7 @@ async function seed(generate){
             newSites.push(newSite.dataValues)
         }
         const newPages = []
-        for (let i = 0; i < generate; i++) {
+        for (let i = 0; i < generate * 10; i++) {
             const randomSite = newSites[Math.floor(Math.random() * newSites.length)]
             const newPage = await Page.create({
                 pageTitle: faker.internet.domainWord(),
@@ -36,7 +36,7 @@ async function seed(generate){
             newPages.push(newPage.dataValues)
         }
         const newComments = []
-        for(let i = 0; i < generate * 3; i++){
+        for(let i = 0; i < generate * 1000; i++){
             const newComment = await Comment.create({
                 text: faker.lorem.text()
             });
@@ -44,10 +44,11 @@ async function seed(generate){
             await newComment.setPage(newPages[Math.floor(Math.random() * newPages.length)].id)
             newComments.push(newComment.dataValues)
         }
-        console.log(newUsers);
-        console.log(newComments)
-        console.log(newPages)
-        console.log(newSites)
+        // console.log(newUsers);
+        // console.log(newComments)
+        // console.log(newPages)
+        // console.log(newSites)
+        console.log('seeded database')
     } catch (error) {
         console.error(error)
     }
