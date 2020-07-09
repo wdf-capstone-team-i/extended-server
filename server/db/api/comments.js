@@ -11,6 +11,7 @@ router.get("/domain/:id", async (req, res, next) => {
         })
         pages = pages.map(page => page.dataValues.id)
         const comments = await Comment.findAll({
+            attributes: ['text', 'createdAt', 'updatedAt'],
             where: {
                 pageId: pages
             },
@@ -28,6 +29,7 @@ router.get("/domain/:id", async (req, res, next) => {
 router.get("/page/:id", async (req, res, next) => {
     try {
         const comments = await Comment.findAll({
+            attributes: ['text', 'createdAt', 'updatedAt'],
             where: {
                 pageId: req.params.id
             },
@@ -57,7 +59,6 @@ router.get("/", async (req, res, next) => {
 
 router.post("/", async (req, res, next) => {
     try {
-        console.log(req.body)
         const { domain, name, url, pageTitle, text } = req.body
         let site = await Site.findOne({
             where: {
@@ -68,7 +69,6 @@ router.post("/", async (req, res, next) => {
             name,
             domain
         })
-        console.log(site)
         let page = await Page.findOne({
             where: {
                 url
@@ -81,11 +81,9 @@ router.post("/", async (req, res, next) => {
             })
             await page.setSite(page)
         }
-        console.log(page)
         const comment = await Comment.create({
             text
         })
-        console.log(comment)
         await page.setSite(site.dataValues.id)
         await comment.setPage(page.dataValues.id)
         await comment.setUser(req.session.userId)
@@ -101,6 +99,7 @@ router.put("/:commentId", async (req, res, next) => {
             req.body,
             {
                 where: {
+                    userId: req.session.userId,
                     id: req.params.commentId
                 }
             }
@@ -111,6 +110,34 @@ router.put("/:commentId", async (req, res, next) => {
             }
         })
         res.json(comment)
+    } catch (error) {
+        next(error)
+    }
+})
+
+router.delete('/', async (req, res, next) => {
+    try {
+        const deleted = await Comment.destroy({
+            where: {
+                userId: req.session.userId
+            }
+        })
+        if (!deleted) res.json('no comments to delete')
+        else res.json(`successfully deleted ${deleted} comment${deleted > 1 ? 's' : ''}`)
+    } catch (error) {
+        next(error)
+    }
+})
+
+router.delete('/:commentId', async (req, res, next) => {
+    try {
+        const deleted = await Comment.destroy({
+            where: {
+                userId: req.session.userId,
+                id: req.params.commentId
+            }
+        })
+        res.json(`successfully deleted comment`)
     } catch (error) {
         next(error)
     }
