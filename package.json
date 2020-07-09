@@ -4,8 +4,10 @@
   "description": "<h1>Extended - Server</h1> The server for the Extended extension Purpose: <ul>   <li>API creation</li>   <li>Database</li> </ul>",
   "main": "server/db/index.js",
   "dependencies": {
+    "axios": "^0.19.2",
     "compression": "^1.7.4",
     "express": "^4.17.1",
+    "materialize-css": "^1.0.0-rc.2",
     "morgan": "^1.10.0",
     "pg": "^8.2.1",
     "pg-hstore": "^2.3.3",
@@ -18,7 +20,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "seed": "node scripts/seed.js",
+
     "start": "node server"
+
   },
   "repository": {
     "type": "git",

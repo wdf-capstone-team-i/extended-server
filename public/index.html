@@ -1,19 +1,91 @@
-
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Guest Sign-in</title>
-</head>
-<body>
-<form>
-    <label for="username">Username</label>
-    <input type="text" name="username">
+<html>
+  <head>
+    <!--Import Google Icon Font-->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <!--Import materialize.css-->
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="css/materialize.min.css"
+      media="screen,projection"
+    />
 
-    <label for="roomname">Room Name</label>
-    <input type="text" name="roomname">
+    <!--Let browser know website is optimized for mobile-->
+    <link type="text/css" rel="stylesheet" href="./styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
 
-    <button>Join Chat</button>
-</form>
-</body>
+  <body style="background-color: #282c34;">
+
+
+      <div class="navbar-fixed">
+
+  <nav>
+    <div class="nav-wrapper" style="background-color: #ffeb3b;">
+      <a href="#" class="brand-logo center" style="color: #282c34;">Extended</a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+
+      </ul>
+    </div>
+  </nav>
+
+      </div>
+
+
+    <main id="main">
+    <div class="container pt-60">
+      <div class="row" id="extension-button-container">
+        <button
+          id="extension-button"
+          class="btn waves-effect waves-light pulse center"
+          type="submit"
+          value="Submit"
+          onclick="window.location.href='https://github.com/wdf-capstone-team-i/extended '"
+        >
+          Extended Extension
+
+
+<img id="github-icon" src="GitHub-Mark-32px.png" class="right">
+        </button>
+
+
+      </div>
+    </div>
+    <footer class="page-footer" id="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text" style="color: #282c34 !important;">
+              Click the button above!
+            </h5>
+            <p
+              class="grey-text text-lighten-4"
+              style="color: #282c34 !important;"
+            >
+
+            </p>
+          </div>
+          <div class="col l4 offset-l2 s12" id="links">
+            <h5 class="white-text" style="color: #282c34 !important;">
+            </h5>
+            <ul></ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright" style="color: #282c34;">
+        <div class="container">
+          © Made with Materialize
+        </div>
+      </div>
+    </main>
+    </footer>
+
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="module" src="index.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+  </body>
 </html>
