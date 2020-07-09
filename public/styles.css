@@ -3,10 +3,34 @@
   padding: 0;
 }
 
-footer {
+html,
+body {
+  height: 100%;
+}
+
+#wrap {
+  min-height: 100%;
+}
+#main {
+  overflow: auto;
+  padding-bottom: 180px;
+  /* must be same height as the footer */
+}
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
   background-color: #fbc02d !important;
 }
 
+body:before {
+  content: "";
+  height: 100%;
+  float: left;
+  width: 0;
+  margin-top: -32767px;
+  /* thank you Erik J - negate effect of float*/
+}
 input,
 select,
 textarea {
@@ -23,7 +47,24 @@ input:focus {
   color: #282c34 !important;
 }
 
-#register-button {
+#extension-button {
   background-color: #fbc02d;
   color: #282c34;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
+
+#extension-button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+}
+
+#github-icon {
+  width: 20px;
+  height: 20px;
 }

@@ -20,104 +20,57 @@
   </head>
 
   <body style="background-color: #282c34;">
-    <div>
-      <div class="navbar-fixed">
-        <nav>
-          <div class="nav-wrapper" style="background-color: #ffeb3b;">
-            <a href="#!" class="brand-logo" style="color: #282c34;">Extended</a>
-            <a href="#" data-target="mobile-demo" class="sidenav-trigger"
-              ><i class="material-icons" style="color: #282c34;">menu</i></a
-            >
-            <ul class="hide-on-med-and-down">
-              <li><a href="./pages">Github</a></li>
-              <li><a href="contact.html">Contact</a></li>
-            </ul>
-          </div>
-        </nav>
-      </div>
 
-      <ul class="sidenav" id="mobile-demo">
-        <li><a href="github.html">Github</a></li>
-        <li><a href="contact.html">Contact</a></li>
+
+      <div class="navbar-fixed">
+
+  <nav>
+    <div class="nav-wrapper" style="background-color: #ffeb3b;">
+      <a href="#" class="brand-logo center" style="color: #282c34;">Extended</a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+
       </ul>
     </div>
-    <div class="container pt-60">
-      <div class="row">
-        <form class="col s12" action="#" id="register" onsubmit="">
-          <div class="row">
-            <div class="input-field col s6">
-              <input id="firstName" type="text" class="validate" required />
-              <label for="firstName">First Name</label>
-            </div>
-            <div class="input-field col s6">
-              <input id="lastName" type="text" class="validate" required />
-              <label for="lastName">Last Name</label>
-            </div>
-          </div>
-          <div class="row mb-0">
-            <div class="input-field col s12">
-              <textarea
-                id="username"
-                class="materialize-textarea"
-                required
-              ></textarea>
-              <label for="username">Username</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s12">
-              <input id="email" type="email" class="validate" required />
-              <label for="email">Email</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s6">
-              <input id="pass" type="password" class="validate" required />
-              <label for="pass">Password</label>
-            </div>
-            <div class="input-field col s6">
-              <input id="c_pass" type="password" class="validate" required />
-              <label for="c_pass">Confirm Password</label>
-            </div>
-          </div>
+  </nav>
 
-          <label>
-            <input type="checkbox" />
-            <span>Remember Me</span>
-          </label>
-          <div class="row">
-            <div class="col s12 mt-25">
-              <button
-                id="register-button"
-                class="btn waves-effect waves-light pulse"
-                type="submit"
-                value="Submit"
-              >
-                Register Now
-                <i class="material-icons right">send</i>
-              </button>
-            </div>
-          </div>
-        </form>
+      </div>
+
+
+    <main id="main">
+    <div class="container pt-60">
+      <div class="row" id="extension-button-container">
+        <button
+          id="extension-button"
+          class="btn waves-effect waves-light pulse center"
+          type="submit"
+          value="Submit"
+          onclick="window.location.href='https://github.com/wdf-capstone-team-i/extended '"
+        >
+          Extended Extension
+
+
+<img id="github-icon" src="GitHub-Mark-32px.png" class="right">
+        </button>
+
+
       </div>
     </div>
-    <footer class="page-footer">
+    <footer class="page-footer" id="footer">
       <div class="container">
         <div class="row">
           <div class="col l6 s12">
             <h5 class="white-text" style="color: #282c34 !important;">
-              Footer Content
+              Click the button above!
             </h5>
             <p
               class="grey-text text-lighten-4"
               style="color: #282c34 !important;"
             >
-              You can use rows and columns here to organize your footer content.
+
             </p>
           </div>
           <div class="col l4 offset-l2 s12" id="links">
             <h5 class="white-text" style="color: #282c34 !important;">
-              Stuff we can add
             </h5>
             <ul></ul>
           </div>
@@ -128,6 +81,7 @@
           © Made with Materialize
         </div>
       </div>
+    </main>
     </footer>
 
     <script type="text/javascript" src="js/index.js"></script>
