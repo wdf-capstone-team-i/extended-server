@@ -13,17 +13,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(compression());
 
-
-app.use("/api", require("./db/api"));
-app.use(express.static(path.join(__dirname, '..', 'public')));
-
-app.use((err, req, res, next) => {
-  res.send("Oops. Well, that's embarrassing");
-});
-
-app.get("/chat", (req, res) => {
-  res.sendFile(path.join(__dirname, "..", "public/chat.html"));
-});
+// add routes here
+app.use("/api/users", require("./db/api/users"));
+app.use(express.static(path.join(__dirname, "..", "public")));
 
 const io = new Socket(server);
 
@@ -33,4 +25,8 @@ io.on("connection", (socket) => {
   socket.on("msg:send", (data) => {
     io.sockets.emit("msg:receive", data);
   });
+});
 
+app.use((err, req, res, next) => {
+  res.send("Oops. Well, that's embarrassing");
+});
