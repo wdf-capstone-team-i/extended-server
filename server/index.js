@@ -6,6 +6,7 @@ const path = require('path');
 const app = express();
 const PORT = 8080;
 const server = app.listen(PORT, () => console.log("Serving on port: ", PORT));
+if (process.env.NODE_ENV !== 'production') require('../secrets')
 
 app.use(morgan("dev"));
 
@@ -28,6 +29,9 @@ app.get('/chat', (req, res)=>{
 })
 
 const io = new Socket(server);
+
+db.sync()
+.then(() => console.log('database connected'))
 
 io.on('connection', (socket) => {
   console.log('Socket connection made!');
