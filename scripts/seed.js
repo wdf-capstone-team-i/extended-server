@@ -1,7 +1,5 @@
 const {db, User, Page, Comment, Site } = require('../server/db');
 const faker = require('faker');
-const { fake } = require('faker');
-
 
 async function seed(generate){
     try {
@@ -36,7 +34,7 @@ async function seed(generate){
             newPages.push(newPage.dataValues)
         }
         const newComments = []
-        for(let i = 0; i < generate * 3; i++){
+        for(let i = 0; i < generate * 4; i++){
             const newComment = await Comment.create({
                 text: faker.lorem.text()
             });
@@ -44,10 +42,11 @@ async function seed(generate){
             await newComment.setPage(newPages[Math.floor(Math.random() * newPages.length)].id)
             newComments.push(newComment.dataValues)
         }
-        console.log(newUsers);
-        console.log(newComments)
-        console.log(newPages)
-        console.log(newSites)
+        // console.log(newUsers);
+        // console.log(newComments)
+        // console.log(newPages)
+        // console.log(newSites)
+        console.log('seeded database')
     } catch (error) {
         console.error(error)
     }
@@ -55,11 +54,3 @@ async function seed(generate){
 }
 
 seed(10);
-
-
-// const info = {
-//     password: faker.internet.password(),
-//     shortPassword: faker.internet.password().slice(0, 5)
-// }
-
-// console.log(info)
