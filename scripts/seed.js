@@ -1,7 +1,5 @@
 const {db, User, Page, Comment, Site } = require('../server/db');
 const faker = require('faker');
-const { fake } = require('faker');
-
 
 async function seed(generate){
     try {
