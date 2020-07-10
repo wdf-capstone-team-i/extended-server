@@ -7,7 +7,6 @@ const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 8080;
 const server = app.listen(PORT, () => console.log("Serving on port: ", PORT));
-if (process.env.NODE_ENV !== 'production') require('../secrets')
 
 app.use(morgan("dev"));
 
