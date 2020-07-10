@@ -5,7 +5,7 @@ async function seed(generate){
     try {
         await db.sync({force: true});
         const newUsers = [];
-        for(let i = 0; i < generate * 100; i++){
+        for(let i = 0; i < generate; i++){
             const newUser = await User.create({
                 firstname: faker.name.firstName(),
                 lastname: faker.name.lastName(),
@@ -24,7 +24,7 @@ async function seed(generate){
             newSites.push(newSite.dataValues)
         }
         const newPages = []
-        for (let i = 0; i < generate * 10; i++) {
+        for (let i = 0; i < generate; i++) {
             const randomSite = newSites[Math.floor(Math.random() * newSites.length)]
             const newPage = await Page.create({
                 pageTitle: faker.internet.domainWord(),
@@ -34,7 +34,7 @@ async function seed(generate){
             newPages.push(newPage.dataValues)
         }
         const newComments = []
-        for(let i = 0; i < generate * 1000; i++){
+        for(let i = 0; i < generate * 4; i++){
             const newComment = await Comment.create({
                 text: faker.lorem.text()
             });
@@ -54,11 +54,3 @@ async function seed(generate){
 }
 
 seed(10);
-
-
-// const info = {
-//     password: faker.internet.password(),
-//     shortPassword: faker.internet.password().slice(0, 5)
-// }
-
-// console.log(info)
