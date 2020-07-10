@@ -19,8 +19,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "seed": "node scripts/seed.js",
-    "start-dev": "nodemon server",
-    "start": "node server"
+    "start-dev": "NODE_ENV='development' nodemon server",
+    "start": "node server",
+    "postinstall": "touch secrets.js"
   },
   "repository": {
     "type": "git",
