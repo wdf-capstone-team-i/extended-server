@@ -1,25 +1,70 @@
-*{
-    margin: 0;
-    padding: 0;
-}
-#chat{
-    width: 45%;
-}
-#chat-messages{
-    background-color: darkgrey;
-    overflow-y: scroll;
-    height: 300px;
+* {
+  margin: 0;
+  padding: 0;
 }
 
-#chat form{
-    background-color: aqua;
-    padding: 10px 5px;
+html,
+body {
+  height: 100%;
 }
 
-.chat-msg{
-    background-color: #2a2a2a;
-    color: white;
-    border-radius: 4px;
-    padding: 10px;
-    margin: 5px;
+#wrap {
+  min-height: 100%;
+}
+#main {
+  overflow: auto;
+  padding-bottom: 180px;
+  /* must be same height as the footer */
+}
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: #fbc02d !important;
+}
+
+body:before {
+  content: "";
+  height: 100%;
+  float: left;
+  width: 0;
+  margin-top: -32767px;
+  /* thank you Erik J - negate effect of float*/
+}
+input,
+select,
+textarea {
+  color: #ffffff;
+}
+
+textarea:focus,
+input:focus {
+  color: #ffffff;
+}
+
+#links,
+#links > * {
+  color: #282c34 !important;
+}
+
+#extension-button {
+  background-color: #fbc02d;
+  color: #282c34;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
+
+#extension-button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+}
+
+#github-icon {
+  width: 20px;
+  height: 20px;
 }

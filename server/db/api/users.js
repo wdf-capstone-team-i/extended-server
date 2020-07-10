@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const {User} = require('../index');
+const { User } = require("../index");
 
 // Get all users
 router.get("/", async (req, res, next) => {
@@ -41,7 +41,7 @@ router.post("/", async (req, res, next) => {
     });
 
     if (newUser) {
-      res.status(200).json(newUser);
+      res.status(201).json(newUser);
     } else {
       res.sendStatus(404);
     }
