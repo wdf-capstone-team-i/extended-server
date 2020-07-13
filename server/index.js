@@ -13,9 +13,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(compression());
 
-
 app.use("/api", require("./db/api"));
-app.use(express.static(path.join(__dirname, '..', 'public')));
+app.use(express.static(path.join(__dirname, "..", "public")));
 
 app.use((err, req, res, next) => {
   res.send("Oops. Well, that's embarrassing");
@@ -33,4 +32,4 @@ io.on("connection", (socket) => {
   socket.on("msg:send", (data) => {
     io.sockets.emit("msg:receive", data);
   });
-
+});
