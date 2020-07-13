@@ -18,6 +18,14 @@
   "devDependencies": {
     "faker": "^4.1.0"
   },
+  "licenses": [
+    {
+      "license": "MIT"
+    },
+    {
+      "license": "ISC"
+    }
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "seed": "node scripts/seed.js",
@@ -29,8 +37,7 @@
     "type": "git",
     "url": "git+https://github.com/wdf-capstone-team-i/extended-server.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Javier Montero, Gilbert Velez, Shmuel Moskowicz",
   "bugs": {
     "url": "https://github.com/wdf-capstone-team-i/extended-server/issues"
   },
