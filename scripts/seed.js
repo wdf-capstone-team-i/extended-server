@@ -32,6 +32,7 @@ async function seed(generate) {
       });
       await newPage.setSite(randomSite.id);
       newPages.push(newPage.dataValues);
+
     }
     const newComments = [];
     for (let i = 0; i < generate * 3; i++) {
@@ -58,9 +59,3 @@ async function seed(generate) {
 
 seed(10);
 
-// const info = {
-//     password: faker.internet.password(),
-//     shortPassword: faker.internet.password().slice(0, 5)
-// }
-
-// console.log(info)
