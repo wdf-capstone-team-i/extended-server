@@ -15,8 +15,8 @@ const handleRegister = async () => {
 
   if (pass !== c_pass) alert("Password do not match");
   const user = {
-    firstName,
-    lastName,
+    firstname,
+    lastname,
     username,
     email,
     pass,
