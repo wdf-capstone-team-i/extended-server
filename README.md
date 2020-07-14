@@ -9,6 +9,7 @@ This is only the server side. Where we deployed the site for the client side is 
 ## Build Status
 
 ![Heroku](https://heroku-badge.herokuapp.com/?app=extended-chat)
+https://shields-staging.herokuapp.com/gitlab/pipeline/monterojavier/extended-server
 
 ## Screenshot
 

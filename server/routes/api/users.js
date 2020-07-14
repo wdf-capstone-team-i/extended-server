@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User } = require("../index");
+const { User } = require("../../db");
 
 // Get all users
 router.get("/", async (req, res, next) => {
@@ -30,11 +30,11 @@ router.get("/:userId", async (req, res, next) => {
 router.post("/", async (req, res, next) => {
   try {
     // might need to user the order or add something
-    const { firstName, lastName, username, email, password } = req.body;
+    const { firstname, lastname, username, email, password } = req.body;
 
     const newUser = await User.create({
-      firstName,
-      lastName,
+      firstname,
+      lastname,
       username,
       email,
       password,
