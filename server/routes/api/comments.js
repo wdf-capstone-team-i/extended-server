@@ -3,11 +3,11 @@ const { Page, User, Comment, Site } = require('../../db')
 const server = require("../../index")
 const io = require('socket.io')(server)
 
-router.get("/domain/:domainUrl", async (req, res, next) => {
+router.get("/domain/:hostName", async (req, res, next) => {
     try {
         const site = await Site.findOne({
             where: {
-                domain: req.params.domainUrl
+                domain: req.params.hostName
             }
         })
         if (!site) return res.sendStatus(404)
@@ -26,7 +26,8 @@ router.get("/domain/:domainUrl", async (req, res, next) => {
             include: {
                 model: User,
                 attributes: ['username']
-            }
+            },
+            order: ['createdAt']
         })
         res.json(comments)
     } catch (error) {
@@ -45,6 +46,7 @@ router.get("/page/:id", async (req, res, next) => {
         model: User,
         attributes: ["username"],
       },
+      order: ['createdAt']
     });
     res.json(comments);
   } catch (error) {
@@ -58,6 +60,7 @@ router.get("/", async (req, res, next) => {
       where: {
         userId: req.session.userId,
       },
+      order: ['createdAt']
     });
     res.json(comments);
   } catch (error) {
@@ -67,21 +70,25 @@ router.get("/", async (req, res, next) => {
 
 router.post("/", async (req, res, next) => {
     try {
+      console.log('posting comment')
         const { domain, name, url, pageTitle, text } = req.body
-        let site = await Site.findOrCreate({
+        let site = await Site.findOne({
             where: {
                 domain
             }
         })
+        console.log(site ? 'found site' : 'didnt find site. creating site')
         if (!site) site = await Site.create({
             name,
             domain
         })
+        console.log('site:', site)
         let page = await Page.findOne({
             where: {
                 url
             }
         })
+        console.log(page ? 'found page' : 'didnt find page. crating page')
         if (!page) {
             console.log(`page title: ${pageTitle} url: ${url}`)
             page = await Page.create({
@@ -90,14 +97,15 @@ router.post("/", async (req, res, next) => {
             })
             console.log('created page')
             await page.setSite(site)
+            console.log('page is set to site')
         }
         const comment = await Comment.create({
             text
         })
-        console.log('comment:', comment)
-        await page.setSite(site.dataValues.id)
+        console.log('created coment:', comment)
         await comment.setPage(page.dataValues.id)
         // await comment.setUser(req.session.userId)
+        console.log('comments is set to page')
         await comment.setUser(1)
         res.json(comment)
     } catch (error) {
