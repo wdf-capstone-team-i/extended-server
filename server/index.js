@@ -1,7 +1,6 @@
 const express = require("express");
 const morgan = require("morgan");
 const compression = require("compression");
-const Socket = require("socket.io");
 
 const db = require("./db/db");
 
@@ -16,23 +15,37 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(compression());
 
-// add routes here
-app.use("/api", require("./db/api"));
-app.use(express.static(path.join(__dirname, "..", "public")));
-
-const io = new Socket(server);
-
 db.sync().then(() => console.log("database connected"));
 
+// add routes here
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+app.use("/api", require("./routes/api"));
+app.use(express.static(path.join(__dirname, "..", "public")));
+
+const io = require('socket.io')(server);
 
 io.on("connection", (socket) => {
   console.log("Socket connection made!");
 
-  socket.on("msg:send", (data) => {
-    io.sockets.emit("msg:receive", data);
+  socket.on("new-user", room => {
+    console.log(room)
+    socket.join(room)
+  })
+
+  socket.on("msg:send", (room, data) => {
+    io.in(room).emit("msg:receive", data);
   });
 });
 
 app.use((err, req, res, next) => {
   res.send("Oops. Well, that's embarrassing");
 });
+
+module.exports = server
