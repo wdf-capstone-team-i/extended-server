@@ -1,7 +1,6 @@
 const express = require("express");
 const morgan = require("morgan");
 const compression = require("compression");
-const Socket = require("socket.io");
 
 const db = require("./db/db");
 
@@ -25,27 +24,28 @@ app.use(function (req, res, next) {
   next();
 });
 
+const io = require('socket.io')(server);
+
 app.use("/api", require("./routes/api"));
 app.use(express.static(path.join(__dirname, "..", "public")));
 
-app.use((err, req, res, next) => {
-  res.send("Oops. Well, that's embarrassing");
-  console.log(err);
-});
-
-
-
 db.sync().then(() => console.log("database connected"));
-
 
 io.on("connection", (socket) => {
   console.log("Socket connection made!");
 
-  socket.on("msg:send", (data) => {
-    io.sockets.emit("msg:receive", data);
+  socket.on("new-user", room => {
+    console.log(room)
+    socket.join(room)
+  })
+
+  socket.on("msg:send", (room, data) => {
+    io.in(room).emit("msg:receive", data);
   });
 });
 
 app.use((err, req, res, next) => {
   res.send("Oops. Well, that's embarrassing");
 });
+
+module.exports = server
