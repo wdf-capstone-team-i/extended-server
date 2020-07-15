@@ -15,10 +15,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(compression());
 
-db.sync().then(() => console.log("database connected"));
-
-// add routes here
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
     "Access-Control-Allow-Headers",
@@ -26,10 +23,13 @@ app.use(function(req, res, next) {
   );
   next();
 });
+
+const io = require('socket.io')(server);
+
 app.use("/api", require("./routes/api"));
 app.use(express.static(path.join(__dirname, "..", "public")));
 
-const io = require('socket.io')(server);
+db.sync().then(() => console.log("database connected"));
 
 io.on("connection", (socket) => {
   console.log("Socket connection made!");
