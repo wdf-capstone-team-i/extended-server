@@ -50,7 +50,10 @@ io.on("connection", (socket) => {
   socket.on('disconnect', () => {
     console.log(`socket is disconnecting from room ${sockets[socket.id]}`)
     rooms[sockets[socket.id]].totalSockets--
-    if (!rooms[sockets[socket.id]].totalSockets) delete rooms[sockets[sockets.id]]
+    if (!rooms[sockets[socket.id]].totalSockets) {
+      console.log('deleting room:', sockets[socket.id])
+      delete rooms[sockets[socket.id]]
+    }
     delete sockets[socket.id]
   })
 
