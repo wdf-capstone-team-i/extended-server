@@ -40,12 +40,18 @@ io.on("connection", (socket) => {
   socket.on("new-user", room => {
     if (!rooms[room]) rooms[room] = {totalSockets: 0}
     rooms[room].totalSockets++
-    if (sockets[socket.id]) rooms[sockets[sockets.id]].totalSockets--
-    sockets[sockets.id] = room
+    sockets[socket.id] = room
     console.log('SOCKETS:', sockets)
     console.log('ROOMS:', rooms)
     console.log(room)
     socket.join(room)
+  })
+
+  socket.on('disconnect', () => {
+    console.log(`socket is disconnecting from room ${sockets[socket.id]}`)
+    rooms[sockets[socket.id]].totalSockets--
+    if (!rooms[sockets[socket.id]].totalSockets) delete rooms[sockets[sockets.id]]
+    delete sockets[socket.id]
   })
 
   socket.on("msg:send", (room, data) => {
