@@ -12,21 +12,6 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-// Get one user
-router.get("/:userId", async (req, res, next) => {
-  try {
-    const { userId } = req.params;
-    const user = await User.findByPk(userId);
-    if (user) {
-      res.status(200).json(user);
-    } else {
-      res.sendStatus(404);
-    }
-  } catch (error) {
-    next(error);
-  }
-});
-
 router.post("/", async (req, res, next) => {
   try {
     // might need to user the order or add something
@@ -42,6 +27,41 @@ router.post("/", async (req, res, next) => {
 
     if (newUser) {
       res.status(201).json(newUser);
+    } else {
+      res.sendStatus(404);
+    }
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post('/login', async (req, res, next)=> {
+  try{
+    const {username, password} = req.body;
+    console.log(req.body);
+    const user = await User.findOne({
+      where: {
+        username
+      }
+    });
+
+    if(user.correctPassword(password)){
+      res.json(user);
+    }else{
+      res.send('User is not found.');
+    }
+  }catch(err){
+    next(err)
+  }
+})
+
+// Get one user
+router.get("/:userId", async (req, res, next) => {
+  try {
+    const { userId } = req.params;
+    const user = await User.findByPk(userId);
+    if (user) {
+      res.status(200).json(user);
     } else {
       res.sendStatus(404);
     }
