@@ -3,11 +3,11 @@ const { Page, User, Comment, Site } = require('../../db')
 const server = require("../../index")
 const io = require('socket.io')(server)
 
-router.get("/domain/:hostName", async (req, res, next) => {
+router.get("/domain/:domainUrl", async (req, res, next) => {
     try {
         const site = await Site.findOne({
             where: {
-                domain: req.params.hostName
+                domain: req.params.domainUrl
             }
         })
         if (!site) return res.sendStatus(404)
@@ -102,11 +102,12 @@ router.post("/", async (req, res, next) => {
         const comment = await Comment.create({
             text
         })
-        console.log('created coment:', comment)
+        console.log('created coment')
         await comment.setPage(page.dataValues.id)
         // await comment.setUser(req.session.userId)
         console.log('comments is set to page')
         await comment.setUser(1)
+        console.log('comment:', comment)
         res.json(comment)
     } catch (error) {
         next(error)
