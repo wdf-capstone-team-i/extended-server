@@ -55,6 +55,7 @@ io.on("connection", (socket) => {
 
 app.use((err, req, res, next) => {
   res.send("Oops. Well, that's embarrassing");
+  console.log(err);
 });
 
 module.exports = server
