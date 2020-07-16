@@ -7,7 +7,7 @@ const Page = db.define('pages', {
         allowNull: false
     },
     url: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         allowNull: false
     }
 })
