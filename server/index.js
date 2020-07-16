@@ -31,10 +31,19 @@ app.use(express.static(path.join(__dirname, "..", "public")));
 
 db.sync().then(() => console.log("database connected"));
 
+let rooms = {}
+let sockets = {}
+
 io.on("connection", (socket) => {
   console.log("Socket connection made!");
 
   socket.on("new-user", room => {
+    if (!rooms[room]) rooms[room] = {totalSockets: 0}
+    rooms[room].totalSockets++
+    if (sockets[socket.id]) rooms[sockets[sockets.id]].totalSockets--
+    sockets[sockets.id] = room
+    console.log('SOCKETS:', sockets)
+    console.log('ROOMS:', rooms)
     console.log(room)
     socket.join(room)
   })
