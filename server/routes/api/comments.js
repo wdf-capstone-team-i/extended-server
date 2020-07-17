@@ -106,7 +106,7 @@ router.post("/", async (req, res, next) => {
         await comment.setPage(page.dataValues.id)
         // await comment.setUser(req.session.userId)
         console.log('comments is set to page')
-        await comment.setUser(1)
+        await comment.setUser(req.session.userId)
         console.log('comment:', comment)
         res.json(comment)
     } catch (error) {
