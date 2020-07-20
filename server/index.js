@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(compression());
 const corsOptions = {
-  origin: ["https://extended-chat.herokuapp.com"],
+  origin: [`http://localhost:3000`],
   credentials: true,
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
@@ -52,36 +52,31 @@ app.use(express.static(path.join(__dirname, "..", "public")));
 
 db.sync().then(() => console.log("database connected"));
 
-let rooms = {};
-let sockets = {};
+let sockets = {}
 
 io.on("connection", (socket) => {
   // console.log("Socket connection made!");
 
-  socket.on("new-user", (room) => {
-    if (!rooms[room]) rooms[room] = { totalSockets: 0 };
-    rooms[room].totalSockets++;
-    sockets[socket.id] = room;
-    // console.log('SOCKETS:', sockets)
-    // console.log('ROOMS:', rooms)
-    // console.log(room)
-    socket.join(room);
-    if (rooms[room] && rooms[room].totalSockets)
-      io.in(room).emit("number-of-sockets", rooms[room].totalSockets);
-  });
+  socket.on("new-user", room => {
+    sockets[socket.id] = room
+    socket.join(room)
+    console.log('ROOM:', socket.room)
+    io.in(room).clients((err, clients) => {
+      if (err) throw err
+      io.in(room).emit('clients-length', clients.length)
+      console.log('NUMBER OF CLIENTS IN ROOM:', room, clients.length)
+    })
+  })
 
-  socket.on("disconnect", () => {
-    // console.log(`socket is disconnecting from room ${sockets[socket.id]}`)
-    const room = sockets[socket.id];
-    if (rooms[room]) rooms[room].totalSockets--;
-    if (rooms[room] && !rooms[room].totalSockets) {
-      // console.log('deleting room:', sockets[socket.id])
-      delete rooms[room];
-    }
-    delete sockets[socket.id];
-    if (rooms[room] && rooms[room].totalSockets)
-      io.in(room).emit("number-of-sockets", rooms[room].totalSockets);
-  });
+  socket.on('disconnect', () => {
+    const room = sockets[socket.id]
+    delete sockets[socket.id]
+    io.in(room).clients((err, clients) => {
+      if (err) throw err
+      io.in(room).emit('clients-length', clients.length)
+      console.log('NUMBER OF CLIENTS IN ROOM:', room, clients.length)
+    })
+  })
 
   socket.on("msg:send", (room, data) => {
     io.in(room).emit("msg:receive", data);
