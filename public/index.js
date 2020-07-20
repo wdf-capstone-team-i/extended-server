@@ -1,6 +1,6 @@
 const handleRegister = async () => {
-  const firstName = event.target.firstName.value;
-  const lastName = event.target.lastName.value;
+  const firstname = event.target.firstName.value;
+  const lastname = event.target.lastName.value;
   const username = event.target.username.value;
   const email = event.target.email.value;
   const pass = event.target.pass.value;
