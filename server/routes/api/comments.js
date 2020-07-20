@@ -104,11 +104,19 @@ router.post("/", async (req, res, next) => {
         })
         console.log('created coment')
         await comment.setPage(page.dataValues.id)
-        // await comment.setUser(req.session.userId)
         console.log('comments is set to page')
         await comment.setUser(req.session.userId)
         console.log('comment:', comment)
-        res.json(comment)
+        const commentWithUser = await Comment.findOne({
+          where: {
+            id: comment.dataValues.id
+          },
+          include: {
+            model: User,
+            attributes: ['username']
+          }
+        })
+        res.json(commentWithUser)
     } catch (error) {
         next(error)
     }
