@@ -22,7 +22,7 @@ const corsOptions = {
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 app.use((req, res, next) => {
-  if (req.get('origin').slice(0, 19) === 'chrome-extension://') corsOptions.origin.push(req.get('origin'))
+  if (req.get('origin').slice(0, 19) === 'chrome-extension://' && !corsOptions.origin.includes(req.get('origin'))) corsOptions.origin.push(req.get('origin'))
   next()
 })
 app.use(cors(corsOptions))
