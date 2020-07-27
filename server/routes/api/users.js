@@ -93,9 +93,9 @@ router.get("/:userId", async (req, res, next) => {
   }
 });
 
-router.delete("/:userId", async (req, res, next) => {
+router.delete("/", async (req, res, next) => {
   try {
-    const { userId } = req.params;
+    const { userId } = req.session;
     await User.destroy({
       where: {
         id: userId,
